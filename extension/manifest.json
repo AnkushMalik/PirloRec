@@ -1,0 +1,6 @@
+{
+  "manifest_version": 2,
+  "name": "PirloRec",
+  "descriptiom": "PirloRec will record user's behavior in browser",
+  "version": "0.1"
+}
