@@ -1,6 +1,18 @@
 {
   "manifest_version": 2,
   "name": "PirloRec",
-  "descriptiom": "PirloRec will record user's behavior in browser",
-  "version": "0.1"
+  "description": "PirloRec will record user's behavior in browser",
+  "version": "0.1",
+  "browser_action": {
+    "default_icon": "pirlo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
 }
