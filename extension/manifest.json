@@ -15,5 +15,5 @@
   "background": {
     "scripts": ["third_party/jquery.js", "background.js"]
   },
-  "permissions": ["storage"]
+  "permissions": ["storage", "<all_urls>"]
 }
