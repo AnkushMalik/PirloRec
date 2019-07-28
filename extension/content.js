@@ -29,15 +29,35 @@ function run(k) {
     $("body").off("mousedown submit input")
 }
 
-function dompath(element) {
-  var path = "";
-  for (; element && element.nodeType == 1; element = element.parentNode) {
-    var inner = $(element).children().length == 0 ? $(element).text() : "";
-    var eleSelector =
-      element.tagName.toLowerCase() +
-      (inner.length > 0 ? ":contains('" + inner + "')" : "");
-    path = " " + eleSelector + path;
+function dompath(elem) {
+  let path;
+  while (elem) {
+    let subSelector = elem.localName;
+    if (!subSelector) {
+      break;
+    }
+    subSelector = subSelector.toLowerCase();
+    const parent = elem.parentElement;
+    if (parent) {
+      const sameTagSiblings = parent.children;
+      if (sameTagSiblings.length > 1) {
+        let nameCount = 0;
+        const index = [...sameTagSiblings].findIndex((child) => {
+          if (elem.localName === child.localName) {
+            nameCount++;
+          }
+          return child === elem;
+        }) + 1;
+        if (index > 1 && nameCount > 1) {
+          subSelector += ':nth-child(' + index + ')';
+        }
+      }
+    }
+
+    path = subSelector + (path ? '>' + path : '');
+    elem = parent;
   }
+  console.log(path);
   return path;
 }
 

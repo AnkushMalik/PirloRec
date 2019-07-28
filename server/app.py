@@ -45,7 +45,6 @@ def run_selenium():
     browser = webdriver.Chrome(chromedriver)
     browser.set_window_size(900,900)
     browser.get('http://www.google.com') #given in problem statement
-
     for i in actions:
         j = json.loads(i)
         if j["type"]=="click":
