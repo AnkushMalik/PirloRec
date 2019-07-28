@@ -1,27 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </head>
-  <body>
-    <nav style="background-color: #43b0f1">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Pirlo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Pirlo</a></li>
-        </ul>
-      </div>
-    </nav>
-    <h1>{{ files }}</h1>
-    {% for f in files %}
-    <tr>
-      <td>{{ f }}</td>
-      <br />
-    </tr>
-    {% endfor %}
-  </body>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+  <nav style="background-color: #43b0f1">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo waves-effect waves-light">Pirlo</a>
+      <ul id="nav-mobile" class="waves-effect waves-light right hide-on-med-and-down">
+        <li><a href="http://pirlo.io/">More Info</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="center">
+      <br><br>
+      {% if files %}
+      <h4>
+        User Recordings
+      </h4>
+      <table class="striped centered responsive-table">
+        <thead>
+          <tr>
+            <th>Recordings</th>
+            <th>Play</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in files %}
+          <tr>
+            <td>
+              <p>{{ f.split('.')[0] }}</p>
+            </td>
+            <td><button class="btn waves-effect waves-light" onclick="selenium_trigger(event)">Play</button></td>
+            <!-- <td>{{ f.split('.')[0] }}</td> -->
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h4>
+        you have no user recordings.
+        <br>
+        Use Pirlo extention to make some
+      </h4>
+      {% endif %}
+    </div>
+  </div>
+  <script>
+    function selenium_trigger(e) {
+      recording = $(e.target).parent().parent().children().eq(0).text().trim();
+      console.log(recording)
+      $.ajax({
+        url: "/run_selenium",
+        contentType: "application/json",
+        dataType: "json",
+        type: "POST",
+        data: JSON.stringify({
+          'file': recording,
+        })
+      });
+    }
+  </script>
+</body>
+
 </html>

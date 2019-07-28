@@ -31,6 +31,15 @@ def savetofile():
     file.close
     return json.dumps(request.json)
 
+@app.route('/run_selenium',methods=['POST','GET'])
+def run_selenium():
+    f_ = request.json['file']
+    f = open("./recordings/{f_!s}.txt".format(**locals()),"r")
+    # print('********')
+    # print(f)
+    # print('*****')
+    return 'going well'
+
 @app.route('/')
 def home():
     mypath = './recordings'
