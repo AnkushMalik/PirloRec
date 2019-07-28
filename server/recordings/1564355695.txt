@@ -1,0 +1,31 @@
+{"type":"click","path":" html body div div span center div img"}
+{"type":"click","path":" html body div div form div div div div div input"}
+{"type":"input","path":" html body div div form div div div div div input","value":"h"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi "}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi m"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my "}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my n"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my na"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my nam"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name "}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name i"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is "}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is a"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is an"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is ank"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is anku"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is ankus"}
+{"type":"input","path":" html body div div form div div div div div input","value":"hi my name is ankush"}
+{"type":"click","path":" html body div div form div div div div div center input"}
+{"type":"click","path":" html body div form div div div div div input"}
+{"type":"input","path":" html body div form div div div div div input","value":"hi my name is ankush "}
+{"type":"input","path":" html body div form div div div div div input","value":"hi my name is ankush m"}
+{"type":"input","path":" html body div form div div div div div input","value":"hi my name is ankush ma"}
+{"type":"input","path":" html body div form div div div div div input","value":"hi my name is ankush mal"}
+{"type":"input","path":" html body div form div div div div div input","value":"hi my name is ankush mali"}
+{"type":"input","path":" html body div form div div div div div input","value":"hi my name is ankush malik"}
+{"type":"click","path":" html body div form div div div button div span svg path"}

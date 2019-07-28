@@ -1,22 +1,32 @@
-events_to_record = ["click scroll keyup"]; //all events to map
-
 chrome.runtime.onMessage.addListener(controller);
 
 function controller(message, sender, sendResponse) {
-  console.log(message);
-
   if (message == "Start") {
     run();
   } else {
     console.log("Pirlo recording stopped");
+    run(0);
   }
 }
 
-function run() {
-  $("body").on("click scroll input", function(e) {
+function run(k) {
+  const handle_events = e => {
+    console.log(e)
     element_path = dompath(e.target);
     handle_recording(e, element_path);
+  }
+  $("body").on("mousedown input", function (e) {
+    handle_events(e)
   });
+  $(function () {
+    $('form').submit(function (e) {
+      e.preventDefault();
+      handle_events(e)
+      return true;
+    });
+  });
+  if (k == 0)
+    $("body").off("mousedown submit input")
 }
 
 function dompath(element) {
@@ -34,7 +44,7 @@ function dompath(element) {
 function handle_recording(e, path) {
   console.log(path);
   switch (e.type) {
-    case "click":
+    case "mousedown":
       chrome.runtime.sendMessage({ "type": "click", "path": path });
       break;
     case "input":
@@ -49,33 +59,3 @@ function handle_recording(e, path) {
       break;
   }
 }
-
-// function handle_recording(e, path) {
-//   switch (e.type) {
-//     case "click":
-//       $.ajax({
-//         url: "http://localhost:8888/record_action",
-//         dataType: "json",
-//         type: "POST",
-//         data: JSON.stringify({ path: path, action: e.type })
-//       });
-//       console.log("click called");
-
-//       break;
-//     case "keyup":
-//       $(e.target)
-//         .closest("form")
-//         .off("submit")
-//         .on("submit", function() {
-//           input = e.target.val();
-//           $.ajax({
-//             url: "http://localhost:8888/type_Action",
-//             dataType: "json",
-//             type: "POST",
-//             data: JSON.stringify({ path: path, action: "typed", text: text })
-//           });
-//           console.log("keyup called");
-//         });
-//       break;
-//   }
-// }
