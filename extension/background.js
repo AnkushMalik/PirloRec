@@ -6,6 +6,13 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
     chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
       if (changeInfo.status == "complete" && tab.active) {
+        $.ajax({
+          url: "http://localhost:3000/run_recorder",
+          contentType: "application/json",
+          dataType: "json",
+          type: "POST",
+          data: "{}"
+        });
         chrome.tabs.sendMessage(tab.id, "Start");
       }
     });
@@ -17,7 +24,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 chrome.runtime.onMessage.addListener(function(request) {
   let data = JSON.stringify(request);
-  $.post("http://localhost:3000/record_actions", data);
   $.ajax({
     url: "http://localhost:3000/record_actions",
     contentType: "application/json",
