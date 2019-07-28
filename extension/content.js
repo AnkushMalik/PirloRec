@@ -35,13 +35,13 @@ function handle_recording(e, path) {
   console.log(path);
   switch (e.type) {
     case "click":
-      chrome.runtime.sendMessage({ type: "click", path: path });
+      chrome.runtime.sendMessage({ "type": "click", "path": path });
       break;
     case "input":
       chrome.runtime.sendMessage({
-        type: "input",
-        path: path,
-        value: e.target.value
+        "type": "input",
+        "path": path,
+        "value": e.target.value
       });
       break;
     default:

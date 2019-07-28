@@ -16,12 +16,15 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 });
 
 chrome.runtime.onMessage.addListener(function(request) {
-  let data = request;
+  let data = JSON.stringify(request);
+  $.post("http://localhost:3000/record_actions", data);
   $.ajax({
-    url: "http://localhost:3000/record_action",
+    url: "http://localhost:3000/record_actions",
+    contentType: "application/json",
     dataType: "json",
     type: "POST",
-    data: data
+    data: JSON.stringify(data)
   });
+  console.log(request);
   console.log(data);
 });
