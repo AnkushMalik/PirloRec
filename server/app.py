@@ -6,9 +6,12 @@ from flask import (
     render_template
 )
 import json
+import os
 from os import listdir
 from os.path import isfile, join
 import time as t
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 app = Flask(__name__, template_folder="views")
 app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
@@ -35,9 +38,23 @@ def savetofile():
 def run_selenium():
     f_ = request.json['file']
     f = open("./recordings/{f_!s}.txt".format(**locals()),"r")
-    # print('********')
-    # print(f)
-    # print('*****')
+    actions = f.read().split("\n")
+    actions.pop()
+    chromedriver = "./chromedriver"
+    os.environ["webdriver.chrome.driver"] = chromedriver
+    browser = webdriver.Chrome(chromedriver)
+    browser.set_window_size(900,900)
+    browser.get('http://www.google.com') #given in problem statement
+
+    for i in actions:
+        j = json.loads(i)
+        if j["type"]=="click":
+            elm = browser.find_element_by_css_selector(j["path"])
+            elm.click()
+        elif j["type"]=="input":
+            elm = browser.find_element_by_css_selector(j["path"])
+            value = j["value"]
+            browser.execute_script("arguments[0].value = arguments[1];", elm, value)
     return 'going well'
 
 @app.route('/')

@@ -1,0 +1,2 @@
+{"type":"click","path":" html body div div div div div div"}
+{"type":"click","path":" html body div form div div div div div input"}
