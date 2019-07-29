@@ -25,7 +25,10 @@ from selenium.webdriver.common.keys import Keys
 app = Flask(__name__, template_folder="views")
 app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
-# run_recorder : 
+##################################################################################################################
+
+
+# Route for init the 'recording'.txt
 @app.route('/run_recorder', methods=['POST','GET'])
 def create_recordingtxt():
     f_name = str(t.time()).split('.')[0]
@@ -35,6 +38,11 @@ def create_recordingtxt():
     print('file created:',f_name)
     return f_name
 
+
+##################################################################################################################
+
+
+# Route for recording various actions tracked by our chrome extention in 'recording'.txt
 @app.route('/record_actions',methods=['POST','GET'])
 def savetofile():
     current_recording = session.get("current_recording",None)
@@ -44,6 +52,11 @@ def savetofile():
     file.close
     return json.dumps(request.json)
 
+
+##################################################################################################################
+
+
+# Route for running selenium by reading specific 'recording'.txt
 @app.route('/run_selenium',methods=['POST','GET'])
 def run_selenium():
     f_ = request.json['file']
