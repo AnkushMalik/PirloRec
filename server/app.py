@@ -74,10 +74,13 @@ def run_selenium():
     for i in actions:
         j = json.loads(i)
         if j["type"]=="click":
-            elm = browser.find_element_by_css_selector(j["path"])
-            elm.click()
+            elm = browser.find_element_by_xpath(j["path"])
+            try:
+                elm.click()
+            except Exception as e:
+                browser.execute_script("arguments[0].click();", elm)
         elif j["type"]=="input":
-            elm = browser.find_element_by_css_selector(j["path"])
+            elm = browser.find_element_by_xpath(j["path"])
             value = j["value"]
             browser.execute_script("arguments[0].value = arguments[1];", elm, value)
     return 'going well'

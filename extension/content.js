@@ -14,7 +14,8 @@ function controller(message, sender, sendResponse) {
 function run(k) {
   const handle_events = e => {
     console.log(e)
-    element_path = dompath(e.target);
+    element_path = xpath(e.target);
+    console.log(element_path)
     handle_recording(e, element_path);
   }
   $("body").on("mousedown input", function (e) {
@@ -31,42 +32,18 @@ function run(k) {
     $("body").off("mousedown submit input")
 }
 
-// #dompath(elem): tracks an element and grabs its unique querySelector
-function dompath(elem) {
-  let path;
-  while (elem) {
-    let subSelector = elem.localName;
-    if (!subSelector) {
-      break;
-    }
-    subSelector = subSelector.toLowerCase();
-    const parent = elem.parentElement;
-    if (parent) {
-      const sameTagSiblings = parent.children;
-      if (sameTagSiblings.length > 1) {
-        let nameCount = 0;
-        const index = [...sameTagSiblings].findIndex((child) => {
-          if (elem.localName === child.localName) {
-            nameCount++;
-          }
-          return child === elem;
-        }) + 1;
-        if (index > 1 && nameCount > 1) {
-          subSelector += ':nth-child(' + index + ')';
-        }
-      }
-    }
 
-    path = subSelector + (path ? '>' + path : '');
-    elem = parent;
-  }
-  console.log(path);
-  return path;
+// #xpath(elem): tracks an element and grabs its unique xpath
+function xpath(el) {
+  if (typeof el == "string") return document.evaluate(el, document, null, 0, null)
+  if (!el || el.nodeType != 1) return ''
+  if (el.id) return "//*[@id='" + el.id + "']"
+  var sames = [].filter.call(el.parentNode.children, function (x) { return x.tagName == el.tagName })
+  return xpath(el.parentNode) + '/' + el.tagName.toLowerCase() + (sames.length > 1 ? '[' + ([].indexOf.call(sames, el) + 1) + ']' : '')
 }
 
 // #handle_recording(e,path) : operates various actions depending upon the type of action
 function handle_recording(e, path) {
-  console.log(path);
   switch (e.type) {
     case "mousedown":
       chrome.runtime.sendMessage({ "type": "click", "path": path });

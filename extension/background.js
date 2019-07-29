@@ -36,5 +36,5 @@ chrome.runtime.onMessage.addListener(function (request) {
     data: JSON.stringify(data)
   });
   // console.log(request);
-  // console.log(data);
+  console.log(JSON.stringify(data));
 });

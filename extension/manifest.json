@@ -12,14 +12,14 @@
         "<all_urls>"
       ],
       "js": [
-        "third_party/jquery.js",
+        "third_party/jquery.min.js",
         "content.js"
       ]
     }
   ],
   "background": {
     "scripts": [
-      "third_party/jquery.js",
+      "third_party/jquery.min.js",
       "background.js"
     ]
   },
