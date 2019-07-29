@@ -26,10 +26,11 @@ DIR Structure
 ### run flask
 
 > cd server
-<br>
+
 - download selenium chrome webdriver
+
 > wget https://chromedriver.storage.googleapis.com/75.0.3770.140/chromedriver_mac64.zip 
 >
-> unzip chromedriver_mac64\ \(1\).zip 
+> unzip chromedriver_mac64.zip 
 >
 > python app.py
