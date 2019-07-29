@@ -34,3 +34,6 @@ DIR Structure
 > unzip chromedriver_mac64.zip 
 >
 > python app.py
+
+## DEMO:
+![ezgif com-video-to-gif(1)](https://user-images.githubusercontent.com/13421233/62017249-8ccd6e80-b1d3-11e9-9ef4-9367888044a8.gif)
