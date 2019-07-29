@@ -2,16 +2,16 @@ checker = 0; //just for toggle
 
 // # this function creates the session, ie: it helps in init a txt file which is to be populated later on
 chrome.browserAction.onClicked.addListener(function (tab) {
-  $.ajax({
-    url: "http://localhost:3000/run_recorder",
-    contentType: "application/json",
-    dataType: "json",
-    type: "POST",
-    data: "{}"
-  });
+
 
   if (checker % 2 == 0) {
-
+    $.ajax({
+      url: "http://localhost:3000/run_recorder",
+      contentType: "application/json",
+      dataType: "json",
+      type: "POST",
+      data: "{}"
+    });
     window.open("https://www.google.com", "_blank");
 
     chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {

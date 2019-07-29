@@ -31,13 +31,12 @@
           </tr>
         </thead>
         <tbody>
-          {% for f in files %}
+          {% for f in files | reverse %}
           <tr>
             <td>
               <p>{{ f.split('.')[0] }}</p>
             </td>
             <td><button class="btn waves-effect waves-light" onclick="selenium_trigger(event)">Play</button></td>
-            <!-- <td>{{ f.split('.')[0] }}</td> -->
           </tr>
           {% endfor %}
         </tbody>

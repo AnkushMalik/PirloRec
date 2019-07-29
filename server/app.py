@@ -14,7 +14,7 @@ import json
 import os
 from os import listdir
 from os.path import isfile, join
-import time as t
+import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 ##################################################################################################################
@@ -31,13 +31,16 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 # Route for init the 'recording'.txt
 @app.route('/run_recorder', methods=['POST','GET'])
 def create_recordingtxt():
-    f_name = str(t.time()).split('.')[0]
+    t = datetime.datetime.now()
+    f_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    print('**************')
+    print(f_name)
+    print('**************')
     f = open("./recordings/{f_name!s}.txt".format(**locals()),"w+")
     session["current_recording"] = str(f_name)
     f.close
     print('file created:',f_name)
     return f_name
-
 
 ##################################################################################################################
 
