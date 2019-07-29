@@ -1,5 +1,6 @@
 chrome.runtime.onMessage.addListener(controller);
 
+// #controller : a function which controllers the extension data flow
 function controller(message, sender, sendResponse) {
   if (message == "Start") {
     run();
@@ -9,6 +10,7 @@ function controller(message, sender, sendResponse) {
   }
 }
 
+// #run(k) : runs the core scripts depending upon the value of k(integer)
 function run(k) {
   const handle_events = e => {
     console.log(e)
@@ -29,6 +31,7 @@ function run(k) {
     $("body").off("mousedown submit input")
 }
 
+// #dompath(elem): tracks an element and grabs its unique querySelector
 function dompath(elem) {
   let path;
   while (elem) {
@@ -61,6 +64,7 @@ function dompath(elem) {
   return path;
 }
 
+// #handle_recording(e,path) : operates various actions depending upon the type of action
 function handle_recording(e, path) {
   console.log(path);
   switch (e.type) {

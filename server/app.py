@@ -1,3 +1,8 @@
+# import the nessecary pieces from Flask
+##################################################################################################################
+###                                                                                                            ###
+###                               import the nessecary libraries                                               ###
+##################################################################################################################
 from flask import (
     Flask,
     request,
@@ -12,10 +17,15 @@ from os.path import isfile, join
 import time as t
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+##################################################################################################################
+##################################################################################################################
 
+
+# Create the app object that will route our calls
 app = Flask(__name__, template_folder="views")
 app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
+# run_recorder : 
 @app.route('/run_recorder', methods=['POST','GET'])
 def create_recordingtxt():
     f_name = str(t.time()).split('.')[0]
@@ -56,6 +66,10 @@ def run_selenium():
             browser.execute_script("arguments[0].value = arguments[1];", elm, value)
     return 'going well'
 
+##################################################################################################################
+
+
+# Route the user to the homepage
 @app.route('/')
 def home():
     mypath = './recordings'

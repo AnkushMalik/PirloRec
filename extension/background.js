@@ -1,5 +1,6 @@
-checker = 0;
+checker = 0; //just for toggle
 
+// # this function creates the session, ie: it helps in init a txt file which is to be populated later on
 chrome.browserAction.onClicked.addListener(function (tab) {
   $.ajax({
     url: "http://localhost:3000/run_recorder",
@@ -10,6 +11,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
   });
 
   if (checker % 2 == 0) {
+
     window.open("https://www.google.com", "_blank");
 
     chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
@@ -23,6 +25,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
   checker++;
 });
 
+// # Below helps in sending user tracking queries to flask server.
 chrome.runtime.onMessage.addListener(function (request) {
   let data = JSON.stringify(request);
   $.ajax({
@@ -32,6 +35,6 @@ chrome.runtime.onMessage.addListener(function (request) {
     type: "POST",
     data: JSON.stringify(data)
   });
-  console.log(request);
-  console.log(data);
+  // console.log(request);
+  // console.log(data);
 });
